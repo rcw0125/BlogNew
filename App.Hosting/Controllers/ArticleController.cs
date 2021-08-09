@@ -53,7 +53,7 @@ namespace App.Hosting.Controllers
         public IActionResult Page(ArticleQueryInputDto dto)
         {
             dto.Type = 1;
-            dto.Keywords = dto.Id = string.Empty;
+            //dto.Keywords = dto.Id = string.Empty;
             dto.Sort = "IsTop desc,PublishDate desc";
             var data = _articleService.ArticleList(dto);
             if (data.count > 0)
@@ -141,7 +141,7 @@ namespace App.Hosting.Controllers
             var hot = await _articleService.Hot(6);
             var category = await _categoryService.GetRootCategories();
             var random = await _articleService.Random();
-            return Json(new { hot, category, random });
+            return Json(new { hot, category, random }, "yyyy-MM-dd HH:mm:ss");
         }
     }
 }

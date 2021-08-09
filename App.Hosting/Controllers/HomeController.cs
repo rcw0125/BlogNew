@@ -94,7 +94,7 @@ namespace App.Hosting.Controllers
             var notice = await _noticeService.GetListCacheAsync(null, o => o.SortCode, false);
             var tags = await _tagsService.TagsCount();
             var link = await _friendLinkService.GetListCacheAsync(null, o => o.SortCode, false);
-            return Json(new { hot, notice, tags, link });
+            return Json(new { hot, notice, tags, link }, "yyyy-MM-dd HH:mm:ss");
         }
 
         /// <summary>

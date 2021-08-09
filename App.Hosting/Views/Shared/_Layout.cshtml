@@ -21,24 +21,54 @@
 <body>
     <nav id="h" class="blog-nav layui-header">
         <div class="blog-container">
-          
+
             <a class="blog-logo" href="/">
-                <img src="~/web/images/xglogo.png" />邢钢炼钢厂
+                <img src="~/web/images/xglogo.png" />炼钢在线
             </a>
-            <ul class="layui-nav">
+            <ul class="layui-nav" lay-filter="">
+
                 <li class="layui-nav-item">
-                    <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
+                    <a href="/article/list/?cid=1077812567801466880"><i class="fa fa-home fa-fw"></i>&nbsp;生产管理</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/article/list">   <i class="fa fa-file-text fa-fw"></i> &nbsp;新闻中心</a>          
+                    <a href="/article/list/?cid=1077813292921131008"><i class="layui-icon layui-icon-vercode"></i>&nbsp;安全管理</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="http://192.168.2.3" target="_blank"><i class="fa fa-paper-plane-o fa-fw"></i>&nbsp;公司内网</a>
+                    <a href="/article/list/?cid=1078106409264091136"><i class="layui-icon layui-icon-table"></i>&nbsp;质量管理</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/article/list/?cid=1078106514742448128"><i class="layui-icon layui-icon-set"></i>&nbsp;设备管理</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/article/list/?cid=1078106657545916416"><i class="layui-icon layui-icon-username"></i>&nbsp;综合管理</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/article/list/?cid=204992943671607296"><i class="layui-icon layui-icon-theme"></i>&nbsp;讲话纪要</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/article/list/?cid=204992872481685504"><i class="layui-icon layui-icon-read"></i>&nbsp;内部发文</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/article/list/?cid=211449380333551616"><i class="layui-icon layui-icon-group"></i>&nbsp;企业文化</a>
                 </li>
                 @*<li class="layui-nav-item">
-                    <a href="/home/timeline"><i class="fa fa-hourglass-half fa-fw"></i>&nbsp;点点滴滴</a>
-                </li>*@
-     
+            <a href="http://192.168.2.3" target="_blank"><i class="fa fa-paper-plane-o fa-fw"></i>&nbsp;公司内网</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="http://192.168.2.4" target="_blank"><i class="layui-icon layui-icon-reply-fill"></i>&nbsp;OA</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="http://192.168.2.55" target="_blank"><i class="layui-icon layui-icon-group"></i>&nbsp;NC</a>
+        </li>*@
+                @*<li class="layui-nav-item">
+            <a href="javascript:;">选项</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">选项1</a></dd>
+                <dd class="layui-this"><a href="">选项2</a></dd>
+                <dd><a href="">选项3</a></dd>
+            </dl>
+        </li>*@
+
                 <span class="layui-nav-bar"></span>
             </ul>
             <a class="blog-navicon" href="javascript:;">
@@ -61,9 +91,18 @@
                 <dd><a href="">菜单3</a></dd>
             </dl>
         </li>
-        
+        <li class="layui-nav-item">
+            <a href="javascript:;">选项</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">选项1</a></dd>
+                <dd class="layui-this"><a href="">选项2</a></dd>
+                <dd><a href="">选项3</a></dd>
+            </dl>
+        </li>
         <li class="layui-nav-item"><a href="">演示</a></li>
     </ul>*@
+
+ 
 
     @RenderBody()
 
@@ -97,13 +136,28 @@
 
     <ul class="layui-nav layui-nav-tree layui-nav-side blog-nav-left layui-hide" lay-filter="nav">
         <li class="layui-nav-item">
-            <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
+            <a href="/article/list/?cid=1077812567801466880"><i class="fa fa-home fa-fw"></i>&nbsp;生产管理</a>
         </li>
         <li class="layui-nav-item">
-            <a href="/article/list">   <i class="fa fa-file-text fa-fw"></i> &nbsp;新闻中心</a>
+            <a href="/article/list/?cid=1077813292921131008"><i class="layui-icon layui-icon-vercode"></i>&nbsp;安全管理</a>
         </li>
         <li class="layui-nav-item">
-            <a href="http://192.168.2.3" target="_blank"><i class="fa fa-paper-plane-o fa-fw"></i>&nbsp;公司内网</a>
+            <a href="/article/list/?cid=1078106409264091136"><i class="layui-icon layui-icon-table"></i>&nbsp;质量管理</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="/article/list/?cid=1078106514742448128"><i class="layui-icon layui-icon-set"></i>&nbsp;设备管理</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="/article/list/?cid=1078106657545916416"><i class="layui-icon layui-icon-username"></i>&nbsp;综合管理</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="/article/list/?cid=204992943671607296"><i class="layui-icon layui-icon-theme"></i>&nbsp;讲话纪要</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="/article/list/?cid=204992872481685504"><i class="layui-icon layui-icon-read"></i>&nbsp;内部发文</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="/article/list/?cid=211449380333551616"><i class="layui-icon layui-icon-group"></i>&nbsp;企业文化</a>
         </li>
         @*<li class="layui-nav-item">
             <a href="/home/timeline"><i class="fa fa-road fa-fw"></i>&nbsp;点点滴滴</a>

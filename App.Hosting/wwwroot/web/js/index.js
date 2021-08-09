@@ -1,5 +1,6 @@
-﻿layui.use(['jquery', 'carousel', 'flow', 'layer', 'laytpl'], function () {
+﻿layui.use(['jquery', 'carousel', 'flow', 'layer', 'laytpl', 'form',], function () {
     var $ = layui.jquery;
+    var form = layui.form;
     var flow = layui.flow;
     var layer = layui.layer, laytpl = layui.laytpl;
 
@@ -37,22 +38,22 @@
 
 
     $("#QQjl").mouseover(function () {
-        layer.tips('QQ交流', this, {
+        layer.tips('公司内网', this, {
             tips: 1
         });
     });
     $("#gwxx").mouseover(function () {
-        layer.tips('给我写信', this, {
+        layer.tips('OA系统', this, {
             tips: 1
         });
     });
     $("#xlwb").mouseover(function () {
-        layer.tips('码云', this, {
+        layer.tips('NC系统', this, {
             tips: 1
         });
     });
     $("#htgl").mouseover(function () {
-        layer.tips('后台管理', this, {
+        layer.tips('炼钢管理系统', this, {
             tips: 1
         });
     });
@@ -90,26 +91,28 @@
                 });
             }
         });
+
+        search();
     });
     //首页主体文章
-    flow.load({
-        elem: '#parentArticleList' //指定列表容器
-        , done: function (page, next) { //到达临界点（默认滚动触发），触发下一页
-            var lis = [];
-            $.get('/article/page?page=' + page, function (res) {
-                //假设你的列表返回在data集合中
-                layui.each(res.data, function (index, item) {
-                    var tpl = newsview.innerHTML;
-                    laytpl(tpl).render(item, function (html) {
-                        lis.push(html);
-                    });
-                });
-                //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
-                //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-                next(lis.join(''), page < res.count);
-            });
-        }
-    });
+    //flow.load({
+    //    elem: '#parentArticleList' //指定列表容器
+    //    , done: function (page, next) { //到达临界点（默认滚动触发），触发下一页
+    //        var lis = [];
+    //        $.get('/article/page?page=' + page, function (res) {
+    //            //假设你的列表返回在data集合中
+    //            layui.each(res.data, function (index, item) {
+    //                var tpl = newsview.innerHTML;
+    //                laytpl(tpl).render(item, function (html) {
+    //                    lis.push(html);
+    //                });
+    //            });
+    //            //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+    //            //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+    //            next(lis.join(''), page < res.count);
+    //        });
+    //    }
+    //});
     //首页通知轮播
     function playNotice(interval) {
         var index = 0;
@@ -122,7 +125,43 @@
             }
             $announcement.eq(index).stop(true, true).fadeIn().siblings('span').fadeOut();  //下标对应的图片显示，同辈元素隐藏
         }, interval);
-    }
+    };
+    function search(key) {
+        $("#parentArticleList>div").remove();
+        flow.load({
+            elem: '#parentArticleList' //指定列表容器
+            , done: function (page, next) { //到达临界点（默认滚动触发），触发下一页
+                var lis = [];
+                var parm = "";             
+                if (key) {
+                    parm += "&Keywords=" + key;
+                }
+                $.get('/article/page?page=' + page + parm, function (res) {
+                    //假设你的列表返回在data集合中
+                    layui.each(res.data, function (index, item) {
+                        var tpl = newsview.innerHTML;
+                        laytpl(tpl).render(item, function (html) {
+                            lis.push(html);
+                        });
+                    });
+                    //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+                    //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+                    next(lis.join(''), page < res.count);
+                });
+            }
+        });
+    };
+
+    form.on('submit(searchkeywords)', function (data) {
+        console.log("aaa");
+        var keywords = $("#keywords").val();
+        if (keywords == null || keywords == "") {
+            layer.msg('请输入要搜索的关键字');
+            return false;
+        }
+        search(keywords);
+        return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
 });
 
 
