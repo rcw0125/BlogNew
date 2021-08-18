@@ -7,22 +7,22 @@ layui.use(['flow', 'layedit', 'laytpl'], function () {
         showmsg();
 
         //文章分类
-        $.get("/article/detailmodule", "", function (result) {
-            var tpl = categoryview.innerHTML;
-            laytpl(tpl).render(result.category, function (html) {
-                $("#category").after(html);
-            });
+        //$.get("/article/detailmodule", "", function (result) {
+        //    var tpl = categoryview.innerHTML;
+        //    laytpl(tpl).render(result.category, function (html) {
+        //        $("#category").after(html);
+        //    });
 
-            tpl = hotview.innerHTML;
-            laytpl(tpl).render(result.hot, function (html) {
-                $("#hot").append(html);
-            });
-            //随机文章
-            tpl = randomview.innerHTML;
-            laytpl(tpl).render(result.random, function (html) {
-                $("#random").append(html);
-            });
-        });
+        //    tpl = hotview.innerHTML;
+        //    laytpl(tpl).render(result.hot, function (html) {
+        //        $("#hot").append(html);
+        //    });
+        //    //随机文章
+        //    tpl = randomview.innerHTML;
+        //    laytpl(tpl).render(result.random, function (html) {
+        //        $("#random").append(html);
+        //    });
+        //});
         $(".fa-file-text").parent().parent().addClass("layui-this");
         if (w <= 450) {
             $("body").on("click", ".layedit-tool-face", function () {

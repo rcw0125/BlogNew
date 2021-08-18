@@ -16,6 +16,7 @@ using App.Framwork.Result;
 using Mapster;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using SqlSugar;
 
 namespace App.Hosting.Areas.BlogManage.Controllers
 {
@@ -37,6 +38,14 @@ namespace App.Hosting.Areas.BlogManage.Controllers
         [Description("文章列表")]
         public IActionResult Index(PageQueryInputDto query)
         {
+            if (CurrentUser.UserName != "admin" && CurrentUser.UserName != "17318")
+            {
+                ConditionalModel cd = new ConditionalModel();
+                cd.FieldName = "CreateUser";
+                cd.FieldValue = "17318";
+                cd.ConditionalType = ConditionalType.Equal;
+                query.ConditionalModels.Add(cd);
+            }            
             return Json(_articleService.GetListByPage(query), "yyyy-MM-dd HH:mm:ss");
         }
 
@@ -44,6 +53,7 @@ namespace App.Hosting.Areas.BlogManage.Controllers
         [Description("新增/编辑文章")]
         public async Task<IActionResult> Form(ArticleInputDto dto)
         {
+            dto.CreateUser= CurrentUser.UserName;
             return Json(await _articleService.Save(dto), "yyyy-MM-dd HH:mm:ss");
         }
 

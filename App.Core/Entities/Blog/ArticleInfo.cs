@@ -38,6 +38,11 @@ namespace App.Core.Entities.Blog
         public string Author { get; set; }
 
         /// <summary>
+        /// 创建人
+        /// </summary>
+        public string CreateUser { get; set; }
+
+        /// <summary>
         /// 内容摘要
         /// </summary>
         public string Summary { get; set; }

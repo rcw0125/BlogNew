@@ -39,6 +39,11 @@ namespace App.Application.Blog.Dtos
         public string Author { get; set; }
 
         /// <summary>
+        /// 创建者
+        /// </summary>
+        public string CreateUser { get; set; }
+
+        /// <summary>
         /// 内容摘要
         /// </summary>
         public string Summary { get; set; }
